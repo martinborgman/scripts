@@ -116,6 +116,7 @@ function sdk_bootstrap() {
     local dest_tarball="flatcar-sdk-${ARCH}-${FLATCAR_SDK_VERSION}.tar.bz2"
 
     cd "__build__/images/catalyst/builds/flatcar-sdk"
+    sign_artifacts "${SIGNER:-}" "${dest_tarball}"*
     copy_to_buildcache "sdk/${ARCH}/${FLATCAR_SDK_VERSION}" "${dest_tarball}"*
     cd -
 }

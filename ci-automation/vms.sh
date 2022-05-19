@@ -96,6 +96,7 @@ function vm_build() {
         cp --reflink=auto -R "${CONTAINER_IMAGE_ROOT}/${arch}-usr/" "./${images_out}/"
 
     cd "images/latest"
+    sign_artifacts "${SIGNER:-}" *
     copy_to_buildcache "images/${arch}/${vernum}/" *
 }
 # --
