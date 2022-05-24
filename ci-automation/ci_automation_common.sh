@@ -312,11 +312,12 @@ function sign_artifacts() {
     if [[ -z "${signer}" ]]; then
         return
     fi
+
     for file; do
         files=()
         if [[ -d "${file}" ]]; then
             readarray -d '' files < <(find "${file}" ! -type d -print0)
-        else
+        elif [[ -e "${file}" ]]; then
             files+=( "${file}" )
         fi
         for file in "${files[@]}"; do
