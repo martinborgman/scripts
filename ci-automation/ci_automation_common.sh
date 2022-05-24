@@ -301,7 +301,20 @@ function secret_to_file() {
 }
 # --
 
-# :
+# Creates signatures for the passed files and directories. In case of
+# directory, all files inside are signed. Files ending with .asc or
+# .sig or .gpg are ignored, though. This function is a noop if signer
+# is empty.
+#
+# Typical use:
+#   sign_artifacts "${SIGNER:-}" artifact.tar.gz
+#   copy_to_buildcache "artifacts/directory" artifact.tar.gz*
+#
+# Parameters:
+#
+# 1 - signer whose key is expected to be already imported into the
+#       keyring
+# @ - files and directories to sign
 function sign_artifacts() {
     local signer="${1}"; shift
     # rest of the parameters are directories/files to sign
