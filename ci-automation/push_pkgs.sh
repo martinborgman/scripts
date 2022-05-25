@@ -41,6 +41,7 @@ function image_build__copy_to_bincache() {
     source ci-automation/ci_automation_common.sh
 
     cd /build/$arch-usr/var/lib/portage/pkgs/
+    sign_artifacts "${SIGNER:-}" *
     copy_to_buildcache "boards/$arch-usr/$version/pkgs" *
 }
 # --
